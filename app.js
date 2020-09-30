@@ -58,8 +58,6 @@ const inquirer = require('inquirer');
             formattedList.push(hcp);
         }
 
-        // formattedList.shift();
-
         fs.writeFile(
             `${currentPath}/output.json`,
             JSON.stringify(formattedList, null, 4),
