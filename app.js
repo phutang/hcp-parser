@@ -58,24 +58,26 @@ const inquirer = require('inquirer');
             formattedList.push(hcp);
         }
 
-        formattedList.shift();
+        // formattedList.shift();
+
         fs.writeFile(
-          `${currentPath}/output.json`,
-          JSON.stringify(formattedList, null, 4),
-          (err) => {
-          if (err) {  
-              console.log(err)
-          }  
-          return;
+            `${currentPath}/output.json`,
+            JSON.stringify(formattedList, null, 4),
+            (err) => {
+                if (err) {  
+                    throw(err)
+                }  
+
+            return;
         });
 
-        converter.json2csv(formattedList, (err, csv) => {
-            if (err) {
-                throw err;
-            }
-    
-            console.log(csv);
-        
+        converter.json2csv(
+            formattedList,
+            (err, csv) => {
+                if (err) {
+                    throw err;
+                }
+
             fs.writeFileSync('output.csv', csv);      
         });
 
