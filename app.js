@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const CSVToJSON = require('csvtojson');
+const converter = require('json-2-csv');
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
@@ -35,17 +36,11 @@ const inquirer = require('inquirer');
 
         const currentPath = process.cwd();
 
-        const d = new Date();
-        const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
-        const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
-        const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
-
-        const currentDate = `${da}-${mo}-${ye}`;
-
         let formattedList = [];
 
         for (let item of data) {
-            let newItem = '';
+            let hcp = {};
+            let uniqueUrl = '';
 
             const baseUrl = 'https://hcp.wellbean.com.au';
             const hcpName = item['Name of HCP'];
@@ -53,23 +48,37 @@ const inquirer = require('inquirer');
             const hcpEmail = item['Email'];
             const hcpPhone = item['Contact Number'];
 
-            newItem = `${baseUrl}/?hcpName=${encodeURIComponent(hcpName)}&hcpPracticeName=${encodeURIComponent(hcpPracticeName)}&hcpEmail=${encodeURIComponent(hcpEmail)}&hcpPhone=${encodeURIComponent(hcpPhone)}`;
+            uniqueUrl = `${baseUrl}/?hcpName=${encodeURIComponent(hcpName)}&hcpPracticeName=${encodeURIComponent(hcpPracticeName)}&hcpEmail=${encodeURIComponent(hcpEmail)}&hcpPhone=${encodeURIComponent(hcpPhone)}`;
 
-            console.log(newItem);
+            hcp.name = hcpName;
+            hcp.uniqueUrl = uniqueUrl;
+            
+            console.log(hcp);
 
-            formattedList.push(newItem);
+            formattedList.push(hcp);
         }
 
         formattedList.shift();
         fs.writeFile(
-          `${currentPath}/output-${currentDate}.js`,
-          JSON.stringify(formattedList, null, 4).replace(/"([^"]+)":/g, '$1:'),
+          `${currentPath}/output.json`,
+          JSON.stringify(formattedList, null, 4),
           (err) => {
           if (err) {  
               console.log(err)
           }  
           return;
-      });
+        });
+
+        converter.json2csv(formattedList, (err, csv) => {
+            if (err) {
+                throw err;
+            }
+    
+            console.log(csv);
+        
+            fs.writeFileSync('output.csv', csv);      
+        });
+
     } catch (err) {
         console.log(chalk.red('Error'));
         console.log(err);

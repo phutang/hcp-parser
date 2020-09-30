@@ -7,4 +7,5 @@ jspm_packages
 
 # data
 *.csv
-output*.js
+output*.json
+output*.csv

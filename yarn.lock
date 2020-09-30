@@ -165,10 +165,20 @@ debug@=3.1.0:
   dependencies:
     ms "2.0.0"
 
+deeks@2.2.6:
+  version "2.2.6"
+  resolved "https://registry.npmjs.org/deeks/-/deeks-2.2.6.tgz#7fc4c07c4251e1deb7e919fd14734fea151dc8b2"
+  integrity sha512-KlfWy96oUxxfAEC8q8QVoik++6yWsTYT9Cm5S6nUddLciZaOy7WDfcFbVCyeHKFO44ptWxtz7sQd9Upm4SGf4g==
+
 delayed-stream@~1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
   integrity sha1-3zrhmayt+31ECqrgsp4icrJOxhk=
+
+doc-path@2.0.4:
+  version "2.0.4"
+  resolved "https://registry.npmjs.org/doc-path/-/doc-path-2.0.4.tgz#3b4a4c8a4f70332d13ec195dab4b612fdcc3d7a4"
+  integrity sha512-y/Q1mjxFks4hvNv1KZkkuTZ6lx9zxLtldKf5GsMTdIXF4gNAOaXZ3YxrgHg/uO7JSME1xw/+G7fZ7/Dj/Ss88g==
 
 ecc-jsbn@~0.1.1:
   version "0.1.2"
@@ -339,6 +349,14 @@ jsbn@~0.1.0:
   version "0.1.1"
   resolved "https://registry.npmjs.org/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
   integrity sha1-peZUwuWi3rXyAdls77yoDA7y9RM=
+
+json-2-csv@^3.7.6:
+  version "3.7.6"
+  resolved "https://registry.npmjs.org/json-2-csv/-/json-2-csv-3.7.6.tgz#2a88b323b8986f31dcd4ef785b3bfb3521d42899"
+  integrity sha512-um9bT7CgI77f/m5G/V5uRKz9UruFQFijD5Fh+EAnr5QowOJpdIk1ya37KSq1MxjBnJgvmpqCnI7ZjsvyTYiW0w==
+  dependencies:
+    deeks "2.2.6"
+    doc-path "2.0.4"
 
 json-schema-traverse@^0.4.1:
   version "0.4.1"
